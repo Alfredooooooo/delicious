@@ -1,3 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital@1&family=Montserrat:wght@400;500;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    margin: 0 20%;
+}
+
+.gradient-hamburger {
+    background: linear-gradient(35deg, #494949, #313131);
+}
+
+.active {
+    background: linear-gradient(to right, #f27121, #e94057);
+}
+
+.active svg {
+    color: white;
+}
+
+.active h4 {
+    color: white;
+}
+
+.grid-auto-fit {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    grid-gap: 3rem;
+}
+
+h3,
+h4,
+a {
+    color: rgb(56, 56, 56);
+}
+
+.image-to-hover:hover .description {
+    visibility: visible;
+}
+
+.image-to-hover:hover Image {
+    background: linear-gradient(to bottom, #3a3a3a, #1a1a1a);
+}
+
+.logo {
+    font-family: 'Lobster Two', cursive;
+    font-weight: 400;
+}
+
+.search {
+    font-family: 'Lobster Two', cursive;
+    font-weight: 400;
+}
+
+.ham-font {
+    font-family: 'Lobster Two', cursive;
+    font-weight: 400;
+    font-size: 1.25rem;
+}
