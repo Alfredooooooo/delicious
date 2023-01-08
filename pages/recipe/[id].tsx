@@ -7,6 +7,7 @@ import Instruction from '../../components/Instruction';
 import Ingredients from '../../components/Ingredients';
 import Head from 'next/head';
 import { motion } from 'framer-motion';
+import Layout from '../../components/Layout';
 
 export const getServerSideProps = async (context: any) => {
     const { query } = context;
@@ -34,83 +35,82 @@ const RecipeDetail = ({ recipe }: any) => {
             <Head>
                 <title>Delicious - {recipe.title}</title>
             </Head>
-            <motion.div
-                className="flex flex-col items-center my-8 shadow-xl border-zinc-900 border-opacity-[2%] border-[8px] p-12 rounded-[2rem]"
-                initial={{
-                    y: 25,
-                    opacity: 0,
-                }}
-                animate={{
-                    y: 0,
-                    opacity: 1,
-                }}
-                exit={{
-                    y: 25,
-                    opacity: 0,
-                }}
-                transition={{
-                    delay: 0.2,
-                    duration: 0.75,
-                }}
-                key={recipe.id as string}
-            >
-                <h2 className="font-extrabold mt-8 text-[1.5rem]">
-                    {recipe.title}
-                </h2>
-                <div className=" my-[1rem] justify-center flex gap-[0.5rem] flex-wrap">
-                    <button
-                        className={
-                            activeTab === 'summary'
-                                ? `active ${buttonClassName}`
-                                : buttonClassName
-                        }
-                        onClick={() => setActiveTab('summary')}
-                    >
-                        <BiBook className="text-white" />
-                        <h3 className="text-white font-bold">Summary</h3>
-                    </button>
-                    <button
-                        className={
-                            activeTab === 'instruction'
-                                ? `active ${buttonClassName}`
-                                : buttonClassName
-                        }
-                        onClick={() => setActiveTab('instruction')}
-                    >
-                        <MdIntegrationInstructions className="text-white" />
-                        <h3 className="text-white font-bold">Instruction</h3>
-                    </button>
-                    <button
-                        className={
-                            activeTab === 'ingredients'
-                                ? `active ${buttonClassName}`
-                                : buttonClassName
-                        }
-                        onClick={() => setActiveTab('ingredients')}
-                    >
-                        <SlBookOpen className="text-white" />
-                        <h3 className="text-white font-bold">Ingredients</h3>
-                    </button>
-                </div>
-                {activeTab === 'summary' && (
-                    <Summary
-                        cuisines={recipe.cuisines}
-                        dishTypes={recipe.dishTypes}
-                        image={recipe.image}
-                        summary={recipe.summary}
-                        title={recipe.title}
-                    />
-                )}
-                {activeTab === 'instruction' &&
-                    recipe.analyzedInstructions[0] && (
-                        <Instruction
-                            instruction={recipe.analyzedInstructions[0].steps}
+            <Layout>
+                <motion.div
+                    className="flex flex-col items-center my-8 shadow-xl border-zinc-900 border-opacity-[2%] border-[8px] p-12 rounded-[2rem]"
+                    initial={{
+                        y: 25,
+                        opacity: 0,
+                    }}
+                    animate={{
+                        y: 0,
+                        opacity: 1,
+                    }}
+                >
+                    <h2 className="font-extrabold mt-8 text-[1.5rem]">
+                        {recipe.title}
+                    </h2>
+                    <div className=" my-[1rem] justify-center flex gap-[0.5rem] flex-wrap">
+                        <button
+                            className={
+                                activeTab === 'summary'
+                                    ? `active ${buttonClassName}`
+                                    : buttonClassName
+                            }
+                            onClick={() => setActiveTab('summary')}
+                        >
+                            <BiBook className="text-white" />
+                            <h3 className="text-white font-bold">Summary</h3>
+                        </button>
+                        <button
+                            className={
+                                activeTab === 'instruction'
+                                    ? `active ${buttonClassName}`
+                                    : buttonClassName
+                            }
+                            onClick={() => setActiveTab('instruction')}
+                        >
+                            <MdIntegrationInstructions className="text-white" />
+                            <h3 className="text-white font-bold">
+                                Instruction
+                            </h3>
+                        </button>
+                        <button
+                            className={
+                                activeTab === 'ingredients'
+                                    ? `active ${buttonClassName}`
+                                    : buttonClassName
+                            }
+                            onClick={() => setActiveTab('ingredients')}
+                        >
+                            <SlBookOpen className="text-white" />
+                            <h3 className="text-white font-bold">
+                                Ingredients
+                            </h3>
+                        </button>
+                    </div>
+                    {activeTab === 'summary' && (
+                        <Summary
+                            cuisines={recipe.cuisines}
+                            dishTypes={recipe.dishTypes}
+                            image={recipe.image}
+                            summary={recipe.summary}
+                            title={recipe.title}
                         />
                     )}
-                {activeTab === 'ingredients' && (
-                    <Ingredients ingredients={recipe.extendedIngredients} />
-                )}
-            </motion.div>
+                    {activeTab === 'instruction' &&
+                        recipe.analyzedInstructions[0] && (
+                            <Instruction
+                                instruction={
+                                    recipe.analyzedInstructions[0].steps
+                                }
+                            />
+                        )}
+                    {activeTab === 'ingredients' && (
+                        <Ingredients ingredients={recipe.extendedIngredients} />
+                    )}
+                </motion.div>
+            </Layout>
         </>
     );
 };

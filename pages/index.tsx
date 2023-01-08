@@ -6,6 +6,7 @@ import Popular from '../components/Popular';
 import Veggie from '../components/Veggie';
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import Layout from '../components/Layout';
 
 export const getStaticProps = async () => {
     const [popularRes, veggieRes] = await Promise.all([
@@ -44,11 +45,13 @@ export default function Home({ popular, veggie }: any) {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <motion.div className="" key={'/'}>
-                <Veggie veggie={veggie} />
+            <Layout>
+                <motion.div className="" key={'/'}>
+                    <Veggie veggie={veggie} />
 
-                <Popular popular={popular} />
-            </motion.div>
+                    <Popular popular={popular} />
+                </motion.div>
+            </Layout>
         </>
     );
 }

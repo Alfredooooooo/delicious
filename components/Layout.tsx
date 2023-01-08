@@ -25,7 +25,6 @@ const Layout = ({ children }: childrenProps) => {
         }
         return router.route;
     };
-    console.log(findKey());
     return (
         <motion.div
             className="layout"
@@ -36,19 +35,18 @@ const Layout = ({ children }: childrenProps) => {
                 initialState: {
                     opacity: 0,
                     clipPath: 'polygon(0 0, 0 0, 0 100%, 0% 100%)',
-                    transition: { duration: 0.4 },
+                    transition: { duration: 0.3 },
                 },
                 animateState: {
                     opacity: 1,
                     clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
-                    transition: { duration: 0.4, staggerChildren: 0.1 },
+                    transition: { duration: 0.3, staggerChildren: 0.1 },
                 },
                 exitState: {
-                    clipPath: 'polygon(0 0, 0 0, 0 100%, 0 100%)',
-                    transition: { duration: 0.4 },
+                    clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)',
+                    transition: { duration: 0.3 },
                 },
             }}
-            key={findKey() as string}
         >
             <Navbar />
             <motion.div className="content">{children}</motion.div>
